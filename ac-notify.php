@@ -5,7 +5,7 @@
  * Author: Brajesh Singh
  * Author URI:http://buddydev.com/members/sbrajesh
  * Description: Show facebook like notification in the notification drop down when some user comment on your update or on other users update where you have commented
- * Version: 1.0.3
+ * Version: 1.0.4
  * License: GPL
  * Site Wide Only: true
  * Network: true
@@ -48,6 +48,9 @@ function ac_notifier_notify($comment_id, $params){
 
    $users=ac_notifier_find_involved_persons($activity_id);
    $activity=new BP_Activity_Activity($activity_id);
+   //since there is a bug in bp 1.2.9 and causes trouble with private notificatin, so let us  not notify for any of the private activities
+   if($activity->hide_sitewide)
+           return;
    //push the original poster user_id, if the original poster has not commented on his/her status yet
    if(!in_array($activity->user_id, $users)&&($bp->loggedin_user->id!=$activity->user_id))//if someone else is commenting
        array_push ($users, $activity->user_id);
