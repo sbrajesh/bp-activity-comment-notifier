@@ -7,9 +7,8 @@
  * Description: Show facebook like notification in the notification drop down when some user comment on your update or on other users update where you have commented
  * Version: 1.0.4
  * License: GPL
- * Site Wide Only: true
  * Network: true
- * Date Updated: April 03, 2011
+ * Date Updated: September 09, 2011
  * 
  */
 /**
@@ -77,6 +76,7 @@ add_action("bp_activity_comment_posted","ac_notifier_notify",10,2);///hook to co
 function ac_notifier_format_notifications( $action, $activity_id, $secondary_item_id, $total_items ) {
    
     global $bp;
+    $glue='';
     $user_names=array();
       $activity = new BP_Activity_Activity( $activity_id );
     $link=ac_notifier_activity_get_permalink( $activity_id );
@@ -135,7 +135,7 @@ return false;
 function ac_notifier_remove_notification($activity,$has_access){
     global $bp;
     if($has_access)//if user can view this activity, remove notification(just a safeguard for hidden activity)
-        bp_core_delete_notifications_for_user_by_item_id(  $bp->loggedin_user->id, $activity->id, $bp->ac_notifier->id,  'new_activity_comment_'.$activity->id);
+        bp_core_delete_notifications_by_item_id(  $bp->loggedin_user->id, $activity->id, $bp->ac_notifier->id,  'new_activity_comment_'.$activity->id);
     
 }
 add_action("bp_activity_screen_single_activity_permalink","ac_notifier_remove_notification",10,2);
@@ -164,7 +164,7 @@ function ac_notifier_remove_notification_for_blog_posts(){
 	));
     //delete the notification for activity comment on new_blog_post
     if(!empty($activity_id))
-        bp_core_delete_notifications_for_user_by_item_id(  $bp->loggedin_user->id, $activity_id, $bp->ac_notifier->id,  'new_activity_comment_'.$activity_id);
+        bp_core_delete_notifications_by_item_id(  $bp->loggedin_user->id, $activity_id, $bp->ac_notifier->id,  'new_activity_comment_'.$activity_id);
 
      //for replies on blog comments in activity stream
       $comments=ac_notifier_get_all_blog_post_comment_ids($post->ID);//get all the comment ids as array
@@ -177,7 +177,7 @@ function ac_notifier_remove_notification_for_blog_posts(){
 
 
     foreach((array)$activities as $ac_id)
-          bp_core_delete_notifications_for_user_by_item_id(  $bp->loggedin_user->id, $ac_id, $bp->ac_notifier->id,  'new_activity_comment_'.$ac_id);
+         bp_core_delete_notifications_by_item_id(  $bp->loggedin_user->id, $ac_id, $bp->ac_notifier->id,  'new_activity_comment_'.$ac_id);
 
 }
 //add_action("wp_head","ac_notifier_remove_notification_for_blog_posts");
@@ -211,7 +211,7 @@ function ac_notifier_remove_notification_for_topic(){
 
          //remove notification for new topic comments: easy
         if(!empty ($activity_id))
-                bp_core_delete_notifications_for_user_by_item_id(  $bp->loggedin_user->id, $activity_id, $bp->ac_notifier->id,  'new_activity_comment_'.$activity_id);
+               bp_core_delete_notifications_by_item_id(  $bp->loggedin_user->id, $activity_id, $bp->ac_notifier->id,  'new_activity_comment_'.$activity_id);
 
 
         $posts=ac_notifier_get_forum_post_ids($topic_id);
@@ -224,7 +224,7 @@ function ac_notifier_remove_notification_for_topic(){
 
                                                             ));//pass the array
             foreach((array)$activities as $ac_id)
-                bp_core_delete_notifications_for_user_by_item_id(  $bp->loggedin_user->id, $ac_id, $bp->ac_notifier->id,  'new_activity_comment_'.$ac_id);
+                bp_core_delete_notifications_by_item_id(  $bp->loggedin_user->id, $ac_id, $bp->ac_notifier->id,  'new_activity_comment_'.$ac_id);
 
              }
     }
@@ -242,7 +242,7 @@ function ac_notifier_remove_notification_for_topic(){
 function bp_ac_clear_notification_on_activity_delete($ac_ids){
     global $bp;
 
-    //bp_core_delete_notifications_for_user_by_item_id(  $bp->loggedin_user->id, $activity->id, $bp->activity->id,  'new_activity_comment_'.$activity->id);
+    //bp_core_delete_notifications_by_item_id(  $bp->loggedin_user->id, $activity->id, $bp->activity->id,  'new_activity_comment_'.$activity->id);
     foreach((array)$ac_ids as $activity_id)
         bp_core_delete_all_notifications_by_type( $activity_id, $bp->ac_notifier->id, 'new_activity_comment_'.$activity_id, $secondary_item_id = false );
 }
