@@ -5,10 +5,10 @@
  * Author: Brajesh Singh
  * Author URI:http://buddydev.com/members/sbrajesh
  * Description: Show facebook like notification in the notification drop down when some user comment on your update or on other users update where you have commented
- * Version: 1.0.4
+ * Version: 1.0.5
  * License: GPL
  * Network: true
- * Date Updated: September 09, 2011
+ * Date Updated: January 11, 2011
  * 
  */
 /**
@@ -25,7 +25,7 @@ function ac_notifier_setup_globals() {
 
     $bp->ac_notifier->id = 'ac_notifier';//I asume others are not going to use this is
     $bp->ac_notifier->slug = BP_ACTIVITY_NOTIFIER_SLUG;
-    $bp->ac_notifier->format_notification_function = 'ac_notifier_format_notifications';//show the notification
+    $bp->ac_notifier->notification_callback = 'ac_notifier_format_notifications';//show the notification
     /* Register this in the active components array */
     $bp->active_components[$bp->ac_notifier->slug] = $bp->ac_notifier->id;
 
@@ -73,7 +73,7 @@ add_action("bp_activity_comment_posted","ac_notifier_notify",10,2);///hook to co
  * @since 1.0.2
  * @desc format and show the notification to the user
  */
-function ac_notifier_format_notifications( $action, $activity_id, $secondary_item_id, $total_items ) {
+function ac_notifier_format_notifications( $action, $activity_id, $secondary_item_id, $total_items,$format='string' ) {
    
     global $bp;
     $glue='';
@@ -116,10 +116,15 @@ function ac_notifier_format_notifications( $action, $activity_id, $secondary_ite
         $text=$commenting_users." and ".$count." others".$also." commented on ".$text. " post";//can we change post to some meaningfull thing depending on the activity item ?
      else
         $text=$commenting_users.$also ." commented on ".$text. " post";
-
-                //sprintf( __('%s commented on your update' ),$commenting_users)
-      return apply_filters( 'bp_activity_multiple_new_comment_notification', '<a href="' . $link. '">' . $text . '</a>');
-   }
+    
+     if($format=='string')
+       return apply_filters( 'bp_activity_multiple_new_comment_notification', '<a href="' . $link. '">' . $text . '</a>');
+    else{
+        return array('link'=>$link,
+              'text'=>$text);
+        }
+   
+    }
 return false;
 }
 
