@@ -5,10 +5,10 @@
  * Author: Brajesh Singh
  * Author URI:http://buddydev.com/members/sbrajesh
  * Description: Show facebook like notification in the notification drop down when some user comment on your update or on other users update where you have commented
- * Version: 1.0.5
+ * Version: 1.0.6
  * License: GPL
  * Network: true
- * Date Updated: January 11, 2011
+ * Date Updated: May 30, 2012
  * 
  */
 /**
@@ -22,7 +22,7 @@ define("BP_ACTIVITY_NOTIFIER_SLUG","ac_notification");
 //register a dummy notifier component, I don't want to do it, but bp has no other mechanism for passing the notification data to function, so we need the format_notification_function
 function ac_notifier_setup_globals() {
     global $bp, $current_blog;
-
+    $bp->ac_notifier=new stdClass();
     $bp->ac_notifier->id = 'ac_notifier';//I asume others are not going to use this is
     $bp->ac_notifier->slug = BP_ACTIVITY_NOTIFIER_SLUG;
     $bp->ac_notifier->notification_callback = 'ac_notifier_format_notifications';//show the notification
@@ -298,12 +298,12 @@ function ac_notifier_activity_get_permalink( $activity_id, $activity_obj = false
 
 	if ( !$activity_obj )
 		$activity_obj = new BP_Activity_Activity( $activity_id );
-
+                    
 	
 		if ( 'activity_comment' == $activity_obj->type )
-			$link = $bp->root_domain . '/' . BP_ACTIVITY_SLUG . '/p/' . $activity_obj->item_id . '/';
+			$link = bp_get_activity_directory_permalink(). 'p/' . $activity_obj->item_id . '/';
 		else
-			$link = $bp->root_domain . '/' . BP_ACTIVITY_SLUG . '/p/' . $activity_obj->id . '/';
+			$link = bp_get_activity_directory_permalink() . 'p/' . $activity_obj->id . '/';
 	
 
 	return apply_filters( 'ac_notifier_activity_get_permalink', $link );
