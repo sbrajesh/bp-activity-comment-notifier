@@ -5,11 +5,11 @@
  * Author: Brajesh Singh
  * Author URI:http://buddydev.com/members/sbrajesh
  * Description: Show facebook like notification in the notification drop down when some user comment on your update or on other users update where you have commented
- * Version: 1.0.6
+ * Version: 1.0.7
  * License: GPL
  * Network: true
- * Date Updated: May 30, 2012
- * 
+ * Date Updated: August 08, 2012
+ * Compatible with BuddyPress 1.6 
  */
 /**
  * Special desclaimer: BuddyPress does not allows multiple items from same component with similar action(It is grouped by buddypress before delivering to the notfication formatting function), so I have hacked the component_action to be unique per item, because we want update for individual action items
@@ -27,7 +27,7 @@ function ac_notifier_setup_globals() {
     $bp->ac_notifier->slug = BP_ACTIVITY_NOTIFIER_SLUG;
     $bp->ac_notifier->notification_callback = 'ac_notifier_format_notifications';//show the notification
     /* Register this in the active components array */
-    $bp->active_components[$bp->ac_notifier->slug] = $bp->ac_notifier->id;
+    $bp->active_components[$bp->ac_notifier->id] = $bp->ac_notifier->id;
 
     do_action( 'ac_notifier_setup_globals' );
 }
