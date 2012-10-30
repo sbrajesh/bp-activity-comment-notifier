@@ -132,6 +132,39 @@ return false;
  *  This section delas with removing notification when a notified item is viewed
  */
 
+/**
+ * Delete activity comment notification when the comment is deleted
+ */
+
+/**
+ * Delete comment notification when activity is deleted
+ * 
+ */
+add_action('bp_activity_action_delete_activity','ac_notifier_remove_notification_on_activity_delete',10,2);
+add_action('bp_activity_delete_comment','ac_notifier_remove_notification_on_activity_comment_delete',10,2);
+
+function ac_notifier_remove_notification_on_activity_delete($acrivity_id,$user_id){
+    ac_delete_notification($activity_id);
+}
+
+function ac_notifier_remove_notification_on_activity_comment_delete($activity_id,$comment_id){
+    
+    ac_delete_notification($activity_id);
+}
+function  ac_delete_notification($activity_id,$action_name=false){
+    global $bp, $wpdb;
+    $component_name=$bp->ac_notifier->id;
+   
+     
+    $and_condition='';
+     
+    if(!empty($action_name))
+     $and_condition=$wpdb->prepare(" AND component_action = %s", $component_action);
+
+    return $wpdb->query( $wpdb->prepare( "DELETE FROM {$bp->core->table_name_notifications} WHERE item_id = %d AND component_name = %s {$and_condition}",$activity_id,$component_name  ) );
+	
+      
+}
 /*
  * For single activity view, we will remove the notification associated with current user and current activity item
  */
