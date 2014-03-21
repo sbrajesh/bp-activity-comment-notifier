@@ -123,7 +123,9 @@ function ac_notifier_format_notifications( $action, $activity_id, $secondary_ite
         
        foreach( (array)$users as $user_id )
              $user_names[] = bp_core_get_user_displayname ( $user_id );
-                
+        
+    	$commenting_users = '';
+    	    
        if( !empty( $user_names ) )
             $commenting_users = join ( $glue, $user_names );
                    
