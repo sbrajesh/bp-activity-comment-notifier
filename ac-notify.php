@@ -123,7 +123,9 @@ function ac_notifier_format_notifications( $action, $activity_id, $secondary_ite
         
        foreach( (array)$users as $user_id )
              $user_names[] = bp_core_get_user_displayname ( $user_id );
-                
+        
+    	$commenting_users = '';
+    	    
        if( !empty( $user_names ) )
             $commenting_users = join ( $glue, $user_names );
                    
@@ -272,5 +274,5 @@ function ac_notifier_activity_get_permalink( $activity_id, $activity_obj = false
 			$link = bp_get_activity_directory_permalink() . 'p/' . $activity_obj->id . '/';
 	
 
-	return apply_filters( 'ac_notifier_activity_get_permalink', $link );
+	return apply_filters( 'ac_notifier_activity_get_permalink', $link, $activity_obj );
 }
