@@ -274,5 +274,5 @@ function ac_notifier_activity_get_permalink( $activity_id, $activity_obj = false
 			$link = bp_get_activity_directory_permalink() . 'p/' . $activity_obj->id . '/';
 	
 
-	return apply_filters( 'ac_notifier_activity_get_permalink', $link );
+	return apply_filters( 'ac_notifier_activity_get_permalink', $link, $activity_obj );
 }
