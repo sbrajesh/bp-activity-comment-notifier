@@ -6,10 +6,10 @@
  * Author: Brajesh Singh
  * Author URI: http://buddydev.com/members/sbrajesh
  * Description: Show facebook like notification in the notification drop down when some user comment on your update or on other users update where you have commented
- * Version: 1.0.8
+ * Version: 1.0.9
  * License: GPL
- * Date Updated: February 26, 2014
- * Compatible with BuddyPress 1.9+ 
+ * Date Updated: June 26, 2015
+ * Compatible with BuddyPress 2.0+
  */
 
 /**
