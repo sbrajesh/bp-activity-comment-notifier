@@ -16,6 +16,8 @@ function ac_notifier_notify_on_new_comment ( $comment_id, $params ) {
 	$users = ac_notifier_find_involved_persons( $activity_id );
 	$activity = new BP_Activity_Activity( $activity_id );
 	
+	//delete any existing notification for the current user
+	//ac_notifier_remove_notification( $activity, true );
 	//since there is a bug in bp 1.2.9 and causes trouble with private notificatin, so let us  not notify for any of the private activities
 	//if ( $activity->hide_sitewide )
 	//	return;
@@ -112,9 +114,11 @@ function ac_notifier_remove_notification ( $activity, $has_access ) {
 	
 	$bp = buddypress();
 	
+	$user_id = get_current_user_id();
+	
 	if ( $has_access ) {//if user can view this activity, remove notification(just a safeguard for hidden activity)
-		bp_notifications_delete_notifications_by_item_id( get_current_user_id(), $activity->id, $bp->ac_notifier->id, 'new_activity_comment_' . $activity->id );
-		bp_notifications_delete_notifications_by_item_id( $activity->user_id,  $activity->id, $bp->ac_notifier->id, 'new_activity_favorite_' . $activity->id ); 
+		bp_notifications_delete_notifications_by_item_id( $user_id, $activity->id, $bp->ac_notifier->id, 'new_activity_comment_' . $activity->id );
+		bp_notifications_delete_notifications_by_item_id( $user_id,  $activity->id, $bp->ac_notifier->id, 'new_activity_favorite_' . $activity->id ); 
 	}	
 }
 
