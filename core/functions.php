@@ -80,12 +80,8 @@ function ac_notifier_format_notifications ( $action, $activity_id, $secondary_it
 	//if it is the original poster, say your, else say %s's post
 	if ( get_current_user_id() == $activity->user_id ) {
 		$self_post = true;
-		$text = __( 'your', 'bp-ac-notifier' );
-		$also = '';
 	} else {
 		$self_post = false;
-		$text = sprintf( __( "%s's", 'bp-ac-notifier' ), bp_core_get_user_displayname( $activity->user_id ) ); //somone's
-		$also = __(' also', 'bp-ac-notifier');
 	}
 
 	$ac_action = 'new_activity_comment_' . $activity_id;
@@ -144,7 +140,7 @@ function ac_notifier_format_notifications ( $action, $activity_id, $secondary_it
 		
 		if( $activity->type == 'activity-comment' ) {
 			
-			$label = _('comment', 'bp-ac-notifier' );
+			$label = __('comment', 'bp-ac-notifier' );
 		}
 		
 		$name = bp_core_get_user_displayname( $secondary_item_id );
