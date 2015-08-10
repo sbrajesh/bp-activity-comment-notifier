@@ -123,7 +123,14 @@ function ac_notifier_format_notifications ( $action, $activity_id, $secondary_it
 
 		} else {
 
-			if ( $total_user <= 2) {
+			if ( $total_user == 1) {
+				if ( $activity->user_id == reset($users) ) {
+					$text = sprintf( __('%s also commented on his/her own post', 'bp-ac-notifier'), $commenting_users, bp_core_get_user_displayname( $activity->user_id ) );
+				} else {
+					$text = sprintf( __('%s also commented on %s\'s post', 'bp-ac-notifier'), $commenting_users, bp_core_get_user_displayname( $activity->user_id ) );
+				}
+			}
+			if ( $total_user == 2) {
 				$text = sprintf( __('%s also commented on %s\'s post', 'bp-ac-notifier'), $commenting_users, bp_core_get_user_displayname( $activity->user_id ) );
 			} else {
 				$text = sprintf( __('%s and %s others also commented on %s\'s post', 'bp-ac-notifier'), $commenting_users, $count, bp_core_get_user_displayname( $activity->user_id ) );
