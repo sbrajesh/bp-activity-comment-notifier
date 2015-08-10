@@ -77,20 +77,19 @@ function ac_notifier_format_notifications ( $action, $activity_id, $secondary_it
 
 	$link = ac_notifier_activity_get_permalink( $activity_id );
 
-	
 	//if it is the original poster, say your, else say %s's post
 	if ( get_current_user_id() == $activity->user_id ) {
-		$text = __( 'your' );
+		$self_post = true;
+		$text = __( 'your', 'bp-ac-notifier' );
 		$also = '';
 	} else {
-
-		$text = sprintf( __( "%s's" ), bp_core_get_user_displayname( $activity->user_id ) ); //somone's
-		$also = ' also';
+		$self_post = false;
+		$text = sprintf( __( "%s's", 'bp-ac-notifier' ), bp_core_get_user_displayname( $activity->user_id ) ); //somone's
+		$also = __(' also', 'bp-ac-notifier');
 	}
 
 	$ac_action = 'new_activity_comment_' . $activity_id;
 	$ac_action_favorite = 'new_activity_favorite_' . $activity_id;
-	
 	
 	if ( $action == $ac_action ) {
 		//if ( (int)$total_items > 1 ) {
@@ -103,9 +102,8 @@ function ac_notifier_format_notifications ( $action, $activity_id, $secondary_it
 			$count = $count - 2;
 			$glue = ", ";
 		} elseif ( $total_user == 2 ) {
-			$glue = ' and '; //if there are 2 unique users , say x and y commented
+			$glue = __(' and ', 'bp-ac-notifier'); //if there are 2 unique users , say x and y commented
 		}
-
 
 		foreach ( (array) $users as $user_id )
 			$user_names[] = bp_core_get_user_displayname( $user_id );
@@ -115,17 +113,24 @@ function ac_notifier_format_notifications ( $action, $activity_id, $secondary_it
 		if ( !empty( $user_names ) )
 			$commenting_users = join( $glue, $user_names );
 
+		if ( $self_post ) {
+			
+			if ( $total_user <= 2) {
+				$text = sprintf( __('%s commented on your post', 'bp-ac-notifier'), $commenting_users );
+			} else {
+				$text = sprintf( __('%s and %s others commented on your post', 'bp-ac-notifier'), $commenting_users, $count );
+			}
 
-		if ( $total_user > 2 )
-			$text = $commenting_users . ' and ' . $count . ' others' . $also . ' commented on ' . $text . ' post'; //can we change post to some meaningfull thing depending on the activity item ?
-		else
-			$text = $commenting_users . $also . ' commented on ' . $text . ' post';
+		} else {
 
+			if ( $total_user <= 2) {
+				$text = sprintf( __('%s also commented on %s\'s post', 'bp-ac-notifier'), $commenting_users, bp_core_get_user_displayname( $activity->user_id ) );
+			} else {
+				$text = sprintf( __('%s and %s others also commented on %s\'s post', 'bp-ac-notifier'), $commenting_users, $count, bp_core_get_user_displayname( $activity->user_id ) );
+			}
 
+		}
 
-
-		
-		
 	} elseif(  $action == $ac_action_favorite ) {
 	
 		$label = __( 'post', 'bp-ac-notifier' );
@@ -136,7 +141,7 @@ function ac_notifier_format_notifications ( $action, $activity_id, $secondary_it
 		}
 		
 		$name = bp_core_get_user_displayname( $secondary_item_id );
-		$text = sprintf( '%s favorited your %s', $name, $label ); 
+		$text = sprintf( __('%s favorited your %s', 'bp-ac-notifier'), $name, $label ); 
 		
 	}
 
