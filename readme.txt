@@ -40,8 +40,8 @@ No. It creates local BuddyPress notification only.
 
 == Screenshots ==
 
-1. Comment Notification in the adminbar screenshot-1.png.
-2. Comment notification in the notification list screenshot-2.png
+1. Comment Notification list on user notifications page screenshot-1.png.
+2. Comment notification in the adminbar notification list screenshot-2.png
 
 == Changelog ==
 

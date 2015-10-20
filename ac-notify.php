@@ -4,7 +4,7 @@
  * Plugin Name: BuddyPress Activity Comment Notifier
  * Plugin URI: http://buddydev.com/plugins/buddypress-activity-comment-notifier/
  * Author: Brajesh Singh
- * Author URI: http://buddydev.com/members/sbrajesh
+ * Author URI: http://buddydev.com/
  * Description: Show facebook like notification in the notification drop down when some user comment on your update or on other users update where you have commented
  * Version: 1.1.1
  * License: GPL
