@@ -6,9 +6,9 @@
  * Author: Brajesh Singh
  * Author URI: http://buddydev.com/
  * Description: Show facebook like notification in the notification drop down when some user comment on your update or on other users update where you have commented
- * Version: 1.1.1
+ * Version: 1.1.2
  * License: GPL
- * Date Updated: October 15, 2015
+ * Date Updated: January 5, 2015
  * Compatible with BuddyPress 2.0+
  */
 
@@ -31,7 +31,7 @@ define( 'BP_ACTIVITY_NOTIFIER_SLUG', 'ac_notification' );
 
 function ac_notifier_setup_globals () {
 	
-	if( !  bp_is_active( 'activity' ) ) {
+	if ( !  bp_is_active( 'activity' ) ) {
 		//no need to registe it
 		return ;
 	}
@@ -62,7 +62,7 @@ function ac_notifier_load() {
 		'core/actions.php',
 	);
 	
-	foreach( $files as $file ) {
+	foreach ( $files as $file ) {
 		require_once $path . $file ;
 	}
 	
