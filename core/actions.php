@@ -16,6 +16,10 @@ function ac_notifier_notify_on_new_comment ( $comment_id, $params ) {
 	$users = ac_notifier_find_involved_persons( $activity_id );
 	$activity = new BP_Activity_Activity( $activity_id );
 	
+	//Let us add a filter to allow skipping some of the activity types if required
+	if ( apply_filters( 'ac_notifier_skip_notification', false, $activity ) ) {
+		return ;
+	}
 	//delete any existing notification for the current user
 	//ac_notifier_remove_notification( $activity, true );
 	//since there is a bug in bp 1.2.9 and causes trouble with private notificatin, so let us  not notify for any of the private activities
