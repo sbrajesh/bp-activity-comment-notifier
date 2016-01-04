@@ -85,9 +85,9 @@ add_action( 'bp_activity_remove_user_favorite', 'ac_notify_on_favorite', 10, 2 )
  * Delete comment notification when activity is deleted
  * 
  */
-function ac_notifier_remove_notification_on_activity_delete ( $acrivity_id, $user_id ) {
+function ac_notifier_remove_notification_on_activity_delete ( $activity_id, $user_id ) {
 	
-	ac_delete_notification( $activity_id );
+	ac_notifier_delete_notification( $activity_id );
 	
 }
 
@@ -98,7 +98,7 @@ add_action( 'bp_activity_action_delete_activity', 'ac_notifier_remove_notificati
  */
 function ac_notifier_remove_notification_on_activity_comment_delete ( $activity_id, $comment_id ) {
 
-	ac_delete_notification( $activity_id );
+	ac_notifier_delete_notification( $activity_id );
 }
 
 add_action( 'bp_activity_delete_comment', 'ac_notifier_remove_notification_on_activity_comment_delete', 10, 2 );
@@ -117,8 +117,9 @@ function ac_notifier_remove_notification ( $activity, $has_access ) {
 	$user_id = get_current_user_id();
 	
 	if ( $has_access ) {//if user can view this activity, remove notification(just a safeguard for hidden activity)
-		bp_notifications_delete_notifications_by_item_id( $user_id, $activity->id, $bp->ac_notifier->id, 'new_activity_comment_' . $activity->id );
-		bp_notifications_delete_notifications_by_item_id( $user_id,  $activity->id, $bp->ac_notifier->id, 'new_activity_favorite_' . $activity->id ); 
+		
+		bp_notifications_mark_notifications_by_item_id( $user_id, $activity->id, $bp->ac_notifier->id, 'new_activity_comment_' . $activity->id );
+		bp_notifications_mark_notifications_by_item_id( $user_id,  $activity->id, $bp->ac_notifier->id, 'new_activity_favorite_' . $activity->id ); 
 	}	
 }
 

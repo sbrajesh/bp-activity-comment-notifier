@@ -43,7 +43,7 @@ function ac_notifier_find_involved_persons ( $activity_id ) {
  * @param type $action_name
  * @return type
  */
-function ac_delete_notification ( $activity_id, $action_name = false ) {
+function ac_notifier_delete_notification ( $activity_id, $action_name = false ) {
 	global $bp, $wpdb;
 	$component_name = $bp->ac_notifier->id;
 
