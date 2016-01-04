@@ -68,14 +68,16 @@ function ac_notify_on_favorite( $activity_id, $user_id ) {
 }
 add_action( 'bp_activity_add_user_favorite', 'ac_notify_on_favorite', 10, 2 );
 
-function ac_notifier_deletenotification_on_unfavorite( $activity_id, $user_id ) {
-	
+
+function ac_notifier_delete_notification_on_unfavorite( $activity_id, $user_id ) {
+	$bp = buddypress();
 	$activity = new BP_Activity_Activity( $activity_id );
 	
 	bp_notifications_delete_notifications_by_item_id( $activity->user_id,  $activity_id, $bp->ac_notifier->id, 'new_activity_favorite_' . $activity_id, $user_id ); 
 	
 }
-add_action( 'bp_activity_remove_user_favorite', 'ac_notify_on_favorite', 10, 2 );
+add_action( 'bp_activity_remove_user_favorite', 'ac_notifier_delete_notification_on_unfavorite', 10, 2 );
+
 
 
 
