@@ -98,7 +98,7 @@ function ac_notifier_format_notifications ( $action, $activity_id, $secondary_it
 			$count = $count - 2;
 			$glue = ", ";
 		} elseif ( $total_user == 2 ) {
-			$glue = __(' and ', 'bp-ac-notifier'); //if there are 2 unique users , say x and y commented
+			$glue = __(' and ', 'bp-activity-comment-notifier'); //if there are 2 unique users , say x and y commented
 		}
 
 		foreach ( (array) $users as $user_id )
@@ -112,39 +112,39 @@ function ac_notifier_format_notifications ( $action, $activity_id, $secondary_it
 		if ( $self_post ) {
 			
 			if ( $total_user <= 2) {
-				$text = sprintf( __('%s commented on your post', 'bp-ac-notifier'), $commenting_users );
+				$text = sprintf( __('%s commented on your post', 'bp-activity-comment-notifier' ), $commenting_users );
 			} else {
-				$text = sprintf( __('%s and %s others commented on your post', 'bp-ac-notifier'), $commenting_users, $count );
+				$text = sprintf( __('%s and %s others commented on your post', 'bp-activity-comment-notifier'), $commenting_users, $count );
 			}
 
 		} else {
 
 			if ( $total_user == 1) {
 				if ( $activity->user_id == reset($users) ) {
-					$text = sprintf( __('%s also commented on his/her own post', 'bp-ac-notifier'), $commenting_users, bp_core_get_user_displayname( $activity->user_id ) );
+					$text = sprintf( __('%s also commented on his/her own post', 'bp-activity-comment-notifier'), $commenting_users, bp_core_get_user_displayname( $activity->user_id ) );
 				} else {
-					$text = sprintf( __('%s also commented on %s\'s post', 'bp-ac-notifier'), $commenting_users, bp_core_get_user_displayname( $activity->user_id ) );
+					$text = sprintf( __('%s also commented on %s\'s post', 'bp-activity-comment-notifier'), $commenting_users, bp_core_get_user_displayname( $activity->user_id ) );
 				}
 			}
 			if ( $total_user == 2) {
-				$text = sprintf( __('%s also commented on %s\'s post', 'bp-ac-notifier'), $commenting_users, bp_core_get_user_displayname( $activity->user_id ) );
+				$text = sprintf( __('%s also commented on %s\'s post', 'bp-activity-comment-notifier'), $commenting_users, bp_core_get_user_displayname( $activity->user_id ) );
 			} else {
-				$text = sprintf( __('%s and %s others also commented on %s\'s post', 'bp-ac-notifier'), $commenting_users, $count, bp_core_get_user_displayname( $activity->user_id ) );
+				$text = sprintf( __('%s and %s others also commented on %s\'s post', 'bp-activity-comment-notifier'), $commenting_users, $count, bp_core_get_user_displayname( $activity->user_id ) );
 			}
 
 		}
 
 	} elseif(  $action == $ac_action_favorite ) {
 	
-		$label = __( 'post', 'bp-ac-notifier' );
+		$label = __( 'post', 'bp-activity-comment-notifier' );
 		
 		if( $activity->type == 'activity-comment' ) {
 			
-			$label = __('comment', 'bp-ac-notifier' );
+			$label = __('comment', 'bp-activity-comment-notifier' );
 		}
 		
 		$name = bp_core_get_user_displayname( $secondary_item_id );
-		$text = sprintf( __('%s favorited your %s', 'bp-ac-notifier'), $name, $label ); 
+		$text = sprintf( __('%s favorited your %s', 'bp-activity-comment-notifier'), $name, $label ); 
 		
 	}
 

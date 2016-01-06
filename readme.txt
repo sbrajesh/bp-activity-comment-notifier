@@ -3,7 +3,7 @@ Contributors: buddydev, sbrajesh
 Tags: buddypress, notification, activity, activity comment, activity comment notification
 Requires at least: BuddyPress 2.0+
 Tested up to: BuddyPress 2.4.3
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,10 +45,14 @@ No. It creates local BuddyPress notification only.
 
 == Changelog ==
 
+= 1.1.3 =
+* Add translation support. Thank to @cadic and @bazalt
+* Add a filter to skip notification for favorites. Thanks to Jamie
+
 = 1.1.2 =
 * Fix the issue with unfavorite notification not being deleted
 * Do not delete notification on read, mark them as read instead
 * Add filter 'ac_notifier_skip_notification' to allow skipping notifications for some activity types if needed
 
 = 1.1.1 =
-* Initial release on wp.org repo
+* Initial release on wporg repo
