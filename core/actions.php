@@ -57,9 +57,13 @@ function ac_notify_on_favorite( $activity_id, $user_id ) {
 	$bp = buddypress();
 	$activity = new BP_Activity_Activity( $activity_id );
 	
-	if( empty( $activity->id ) || $activity->user_id == $user_id )
+	if ( empty( $activity->id ) || $activity->user_id == $user_id )
 		return ;
 	
+	if ( apply_filters( 'ac_notifier_skip_favorite_notification', false, $activity ) ) {
+		return ;
+	}
+
 	bp_notifications_add_notification( array(
 			'item_id'			=> $activity_id,
 			'user_id'			=> $activity->user_id,
