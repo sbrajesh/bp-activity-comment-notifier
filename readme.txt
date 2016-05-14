@@ -2,8 +2,8 @@
 Contributors: buddydev, sbrajesh
 Tags: buddypress, notification, activity, activity comment, activity comment notification
 Requires at least: BuddyPress 2.0+
-Tested up to: BuddyPress 2.4.3
-Stable tag: 1.1.3
+Tested up to: BuddyPress 2.5.2
+Stable tag: 1.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,7 +32,7 @@ Free & paid supports are available via [BuddyDev Support Forum](http://buddydev.
 
 = How do I get support? =
 
-Please use BuddyDev forums for any support question. We are helpful people and stand behind our plugins firmly.
+Please use [BuddyDev forums](http://buddydev.com/support/forums/) for any support question. We are helpful people and stand behind our plugins firmly.
 
 = Does it sends a mail notification? = 
 No. It creates local BuddyPress notification only.
@@ -44,6 +44,10 @@ No. It creates local BuddyPress notification only.
 2. Comment notification in the adminbar notification list screenshot-2.png
 
 == Changelog ==
+
+= 1.1.4 =
+* Links to the actual comment fragment on the page
+* a little bit of code cleanup
 
 = 1.1.3 =
 * Add translation support. Thank to @cadic and @bazalt
