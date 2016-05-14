@@ -88,6 +88,7 @@ function ac_notifier_format_notifications ( $action, $activity_id, $secondary_it
 	$ac_action_favorite = 'new_activity_favorite_' . $activity_id;
 	
 	if ( $action == $ac_action ) {
+		$link = $link . '#acomment-'. $secondary_item_id;
 		//if ( (int)$total_items > 1 ) {
 		$users = ac_notifier_find_involved_persons( $activity_id );
 

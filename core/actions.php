@@ -41,7 +41,8 @@ function ac_notifier_notify_on_new_comment ( $comment_id, $params ) {
 			'item_id'			=> $activity_id,
 			'user_id'			=> $user_id,
 			'component_name'	=> $bp->ac_notifier->id,
-			'component_action'	=> 'new_activity_comment_' . $activity_id
+			'component_action'	=> 'new_activity_comment_' . $activity_id,
+			'secondary_item_id' => $comment_id,
 		) ); 
 		// We are creating the dynamic component_action to bypass the buddyprsess grouping of notifications
 	}
