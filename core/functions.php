@@ -10,14 +10,15 @@
  */
 function ac_notifier_activity_get_permalink ( $activity_id, $activity_obj = false ) {
 
-	if ( ! $activity_obj )
+	if ( ! $activity_obj ) {
 		$activity_obj = new BP_Activity_Activity( $activity_id );
+	}
 
-
-	if ( 'activity_comment' == $activity_obj->type )
+	if ( 'activity_comment' == $activity_obj->type ) {
 		$link = bp_get_activity_directory_permalink() . 'p/' . $activity_obj->item_id . '/';
-	else
+	} else {
 		$link = bp_get_activity_directory_permalink() . 'p/' . $activity_obj->id . '/';
+	}
 
 
 	return apply_filters( 'ac_notifier_activity_get_permalink', $link, $activity_obj );
@@ -50,8 +51,9 @@ function ac_notifier_delete_notification ( $activity_id, $action_name = false ) 
 
 	$and_condition = '';
 
-	if ( !empty( $action_name ) )
+	if ( ! empty( $action_name ) ) {
 		$and_condition = $wpdb->prepare( ' AND component_action = %s', $component_action );
+	}
 
 	return $wpdb->query( $wpdb->prepare( "DELETE FROM {$bp->core->table_name_notifications} WHERE item_id = %d AND component_name = %s {$and_condition}", $activity_id, $component_name ) );
 }
@@ -102,13 +104,15 @@ function ac_notifier_format_notifications ( $action, $activity_id, $secondary_it
 			$glue = __(' and ', 'bp-activity-comment-notifier'); //if there are 2 unique users , say x and y commented
 		}
 
-		foreach ( (array) $users as $user_id )
+		foreach ( (array) $users as $user_id ) {
 			$user_names[] = bp_core_get_user_displayname( $user_id );
+		}
 
 		$commenting_users = '';
 
-		if ( !empty( $user_names ) )
+		if ( ! empty( $user_names ) ) {
 			$commenting_users = join( $glue, $user_names );
+		}
 
 		if ( $self_post ) {
 			
@@ -135,12 +139,11 @@ function ac_notifier_format_notifications ( $action, $activity_id, $secondary_it
 
 		}
 
-	} elseif(  $action == $ac_action_favorite ) {
+	} elseif (  $action == $ac_action_favorite ) {
 	
 		$label = __( 'post', 'bp-activity-comment-notifier' );
 		
-		if( $activity->type == 'activity-comment' ) {
-			
+		if ( $activity->type == 'activity-comment' ) {
 			$label = __('comment', 'bp-activity-comment-notifier' );
 		}
 		
@@ -149,22 +152,19 @@ function ac_notifier_format_notifications ( $action, $activity_id, $secondary_it
 		
 	}
 
-	if( empty( $text ) )
+	if ( empty( $text ) ) {
 		return false;
-	
+	}
+
 	if ( $format == 'string' ) {
-		
-			return apply_filters( 'bp_activity_multiple_new_comment_notification', '<a href="' . $link . '">' . $text . '</a>' );
-			
+		return apply_filters( 'bp_activity_multiple_new_comment_notification', '<a href="' . $link . '">' . $text . '</a>' );
 	} else {
-			
 		return array(
 			'link' => $link,
 			'text' => $text
 		);
 	}
-	
-		
+
 	return false;
 }
 
