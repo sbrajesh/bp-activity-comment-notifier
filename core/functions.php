@@ -92,8 +92,14 @@ function ac_notifier_format_notifications ( $action, $activity_id, $secondary_it
 	if ( $action == $ac_action ) {
 		$link = $link . '#acomment-'. $secondary_item_id;
 		//if ( (int)$total_items > 1 ) {
-		$users = ac_notifier_find_involved_persons( $activity_id );
+		if( $total_items > 1 ) {
+				$users = ac_notifier_find_involved_persons( $activity_id );
 
+		} else {
+			$activity = new BP_Activity_Activity( $secondary_item_id );
+			$users = array(0=> $activity->user_id );
+		}
+	
 		$total_user = $count = count( $users ); //how many unique users have commented
 
 		if ( $count > 2 ) {
