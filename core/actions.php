@@ -24,11 +24,24 @@ function ac_notifier_notify_on_new_comment( $comment_id, $params ) {
 		return;
 	}
 
-
+	// These user ids won't be notified.
+	$excluded_ids = array();
+	// Do not notify original poster as BuddyPress does it for us.
+	$excluded_ids[] = $activity->user_id;
+	/*
 	if ( ! in_array( $activity->user_id, $users ) && ( get_current_user_id() != $activity->user_id ) ) {
 		// push the original poster user_id, if the original poster has not commented on his/her status yet.
 		array_push( $users, $activity->user_id );
+	}*/
+
+	// Is it a reply?
+	if ( ! empty( $params['parent_id'] ) && ( $params['activity_id'] != $params['parent_id'] ) ) {
+		$parent_comment = new BP_Activity_Activity( $params['parent_id'] );
+		$excluded_ids[] = $parent_comment->user_id;
 	}
+
+	// Remove the excluded ids from list.
+	$users = array_diff( $users, $excluded_ids );
 
 	foreach ( (array) $users as $user_id ) {
 
