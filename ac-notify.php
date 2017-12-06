@@ -38,7 +38,7 @@ function ac_notifier_setup_globals() {
 	$bp = buddypress();
 
 	$bp->ac_notifier                        = new stdClass();
-	// I asume others are not going to use this.
+	// I assume others are not going to use this.
 	$bp->ac_notifier->id                    = 'ac_notifier';
 	$bp->ac_notifier->slug                  = BP_ACTIVITY_NOTIFIER_SLUG;
 	// show the notification.
@@ -75,7 +75,6 @@ add_action( 'bp_loaded', 'ac_notifier_load' );
  * Load translations.
  */
 function ac_notifier_load_textdomain() {
-
 	load_plugin_textdomain( 'bp-activity-comment-notifier', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
 }
 

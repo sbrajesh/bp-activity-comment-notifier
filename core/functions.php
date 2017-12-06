@@ -31,6 +31,10 @@ function ac_notifier_activity_get_permalink( $activity_id, $activity_obj = null 
 
 /**
  * Finds all the unique user_ids who have commented on this activity
+ *
+ * @param int $activity_id activity id.
+ *
+ * @return array of user ids.
  */
 function ac_notifier_find_involved_persons( $activity_id ) {
 
@@ -172,5 +176,3 @@ function ac_notifier_format_notifications( $action, $activity_id, $secondary_ite
 		);
 	}
 }
-
-

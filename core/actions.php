@@ -14,7 +14,7 @@ function ac_notifier_notify_on_new_comment( $comment_id, $params ) {
 
 	$bp = buddypress();
 
-	extract( $params );
+	$activity_id = $params['activity_id'];
 
 	$users    = ac_notifier_find_involved_persons( $activity_id );
 	$activity = new BP_Activity_Activity( $activity_id );
@@ -78,7 +78,7 @@ function ac_notify_on_favorite( $activity_id, $user_id ) {
 add_action( 'bp_activity_add_user_favorite', 'ac_notify_on_favorite', 10, 2 );
 
 /**
- * Delete notification on unfavorite.
+ * Delete notification on un-favorite.
  *
  * @param int $activity_id activity id.
  * @param int $user_id user id.
