@@ -2,8 +2,8 @@
 Contributors: buddydev, sbrajesh
 Tags: buddypress, notification, activity, activity comment, activity comment notification
 Requires at least: BuddyPress 2.0+
-Tested up to: BuddyPress 2.5.2
-Stable tag: 1.1.4
+Tested up to: BuddyPress 2.9.2
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,9 +12,9 @@ BuddyPress Activity Comment Notifier plugin emulates the facebook style notifica
 == Description ==
 BuddyPress Activity Comment Notifier plugin emulates the facebook style notification for the comments made on user activity. It will show the notification to a user in following scenario
 
-*	When a user has an update and someone else comments on it
+*	When a user has an update and someone else comments on it(It is handled by BuddyPress Now)
 *	When a user comments on someone’s update and other users also comment on that update, all the users are notified
-*	When a user favorites your activity( Added in version 1.1 )
+*	When a user favorites your activity
 
 For more details, please visit [BuddyPress Activity Comment Notifier plugin page](http://buddydev.com/plugins/buddypress-activity-comment-notifier/ "Plugin page" )
 
@@ -44,6 +44,9 @@ No. It creates local BuddyPress notification only.
 2. Comment notification in the adminbar notification list screenshot-2.png
 
 == Changelog ==
+
+= 1.2.0 =
+* Fix double notification bug for original author of the activity.
 
 = 1.1.4 =
 * Links to the actual comment fragment on the page
