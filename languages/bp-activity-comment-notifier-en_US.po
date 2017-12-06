@@ -1,58 +1,58 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: 2016-05-14 11:56+0530\n"
-"PO-Revision-Date: 2016-05-14 11:56+0530\n"
+"Project-Id-Version: BuddyPress Activity Comment Notifier\n"
+"POT-Creation-Date: 2017-12-06 13:03+0530\n"
+"PO-Revision-Date: 2017-12-06 13:03+0530\n"
 "Last-Translator: BuddyDev.com\n"
 "Language-Team: \n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: core/functions.php:104
+#: core/functions.php:117
 msgid " and "
 msgstr ""
 
-#: core/functions.php:120
+#: core/functions.php:133
 #, php-format
 msgid "%s commented on your post"
 msgstr ""
 
-#: core/functions.php:122
+#: core/functions.php:135
 #, php-format
 msgid "%s and %s others commented on your post"
 msgstr ""
 
-#: core/functions.php:129
+#: core/functions.php:141
 #, php-format
 msgid "%s also commented on his/her own post"
 msgstr ""
 
-#: core/functions.php:131 core/functions.php:135
+#: core/functions.php:143 core/functions.php:147
 #, php-format
 msgid "%s also commented on %s's post"
 msgstr ""
 
-#: core/functions.php:137
+#: core/functions.php:149
 #, php-format
 msgid "%s and %s others also commented on %s's post"
 msgstr ""
 
-#: core/functions.php:144
+#: core/functions.php:155
 msgid "post"
 msgstr ""
 
-#: core/functions.php:147
+#: core/functions.php:158
 msgid "comment"
 msgstr ""
 
-#: core/functions.php:151
+#: core/functions.php:162
 #, php-format
 msgid "%s favorited your %s"
 msgstr ""
